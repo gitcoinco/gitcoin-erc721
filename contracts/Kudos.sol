@@ -1,13 +1,16 @@
 pragma solidity ^0.4.24;
 
-import 'openzeppelin-solidity/contracts/token/ERC721/ERC721Token.sol';
+import 'openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol';
+import 'openzeppelin-solidity/contracts/token/ERC721/ERC721Mintable.sol';
 import 'openzeppelin-solidity/contracts/ownership/Ownable.sol';
 import 'openzeppelin-solidity/contracts/math/SafeMath.sol';
 
 /// @title Kudos
 /// @author Jason Haas <jasonrhaas@gmail.com>
 /// @notice Kudos ERC721 interface for minting, cloning, and transferring Kudos tokens.
-contract Kudos is ERC721Token("KudosToken", "KDO"), Ownable {
+contract Kudos is ERC721Full, ERC721Mintable, Ownable {
+    constructor() ERC721Full("KudosToken", "KDO") public {
+    }
     using SafeMath for uint256;
 
     struct Kudo {
